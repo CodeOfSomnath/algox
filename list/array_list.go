@@ -9,27 +9,30 @@ type ArrayList[T cmp.Ordered] struct {
 	array []T
 }
 
-// sorting interface need for sorting
-// func (a ArrayList[T]) Len() int           { return len(a.array) }
-// func (a ArrayList[T]) Swap(i, j int)      { a.array[i], a.array[j] = a.array[j], a.array[i] }
-// func (a ArrayList[T]) Less(i, j int) bool { return a.array[i] < a.array[j] }
-
+// Creating a new arraylist
 func NewArrayList[T cmp.Ordered]() ArrayList[T] {
 	return ArrayList[T]{
 		array: make([]T, 0),
 	}
 }
+/*
+Add a element to the ArrayList.
 
-// Add a element to the ArrayList
+value - element to be appended to this list
+*/
 func (arr *ArrayList[T]) Add(value T) {
 	arr.array = append(arr.array, value)
 }
 
-// Inserts the specified element at the specified position in this list.
+/*
+Inserts the specified element at the specified position in this list.
+
+index - index at which the specified element is to be inserted.
+value - element to be inserted.
+*/
 func (arr *ArrayList[T]) AddAt(index int, value T) {
 
 	currentElement := value
-	// currentIndex := index
 	var temp T
 
 	for i := index; i < len(arr.array); i++ {
@@ -42,8 +45,16 @@ func (arr *ArrayList[T]) AddAt(index int, value T) {
 
 }
 
-// Appends all of the elements in the specified collection to the end of this list,
-// in the order that they are returned by the specified collection's Iterator.
+/*
+Appends all of the elements in the specified array to the end of this ArrayList,
+in the order that they are returned by the specified array's Iterator.
+The behavior of this operation is undefined if the specified array is modified
+while the operation is in progress. 
+(This implies that the behavior of this call is undefined
+if the specified array is this ArrayList, and this ArrayList is nonempty.)
+
+values - array containing elements to be added to this ArrayList.
+*/
 func (arr *ArrayList[T]) AddAll(values ...T) bool {
 	isSuccessFull := true
 
@@ -54,8 +65,15 @@ func (arr *ArrayList[T]) AddAll(values ...T) bool {
 	return isSuccessFull
 }
 
-// Inserts all of the elements in the specified collection into this list,
-// starting at the specified position.
+/*
+Inserts all of the elements in the specified array into this ArrayList, starting at the
+specified position. Shifts the element currently at that position (if any) and any 
+subsequent elements to the right (increases their indices). The new elements will appear in 
+the ArrayList in the order that they are returned by the specified array's iterator.
+
+index - index at which to insert the first element from the specified array
+values - array containing elements to be added to this ArrayList
+*/
 func (arr *ArrayList[T]) AddAllAt(index int, values ...T) bool {
 	isSuccessFull := true
 
@@ -67,24 +85,31 @@ func (arr *ArrayList[T]) AddAllAt(index int, values ...T) bool {
 	return isSuccessFull
 }
 
-// Removes all of the elements from this list.
+
+/*
+Removes all of the elements from this list. The list will be empty after this call returns.
+*/
 func (arr *ArrayList[T]) Clear() {
 	arr.array = make([]T, 0)
 }
 
-// Returns a shallow copy of this ArrayList instance.
+// Returns a copy of this ArrayList instance.
 func (arr *ArrayList[T]) Clone() ArrayList[T] {
 	copyArrayList := *arr
 	return copyArrayList
 }
 
-// Returns true if this list contains the specified element.
+// Returns true if this ArrayList contains the specified element.
+//
+// o - element whose presence in this ArrayList is to be tested.
 func (arr *ArrayList[T]) Contains(value T) bool {
 	return arr.IndexOf(value) != -1
 }
 
 // Returns the index of the first occurrence of the specified element in this list,
 // or -1 if this list does not contain the element.
+//
+// value - element to search for
 func (arr *ArrayList[T]) IndexOf(value T) int {
 	for i := 0; i < len(arr.array); i++ {
 		if arr.array[i] == value {
@@ -96,6 +121,8 @@ func (arr *ArrayList[T]) IndexOf(value T) int {
 
 // Returns the index of the last occurrence of the specified element in this list,
 // or -1 if this list does not contain the element.
+//
+// value - element to search for
 func (arr *ArrayList[T]) LastIndexOf(value T) int {
 	for i := len(arr.array) - 1; i >= 0; i-- {
 		if arr.array[i] == value {

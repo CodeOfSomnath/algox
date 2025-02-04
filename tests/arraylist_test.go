@@ -58,8 +58,7 @@ func TestIndexFunctions(t *testing.T) {
 	}
 }
 
-
-func TestSort(t *testing.T)  {
+func TestSort(t *testing.T) {
 	arr := list.NewArrayList[int]()
 	arr.AddAll(7, 4, 10)
 	arr.Sort()
