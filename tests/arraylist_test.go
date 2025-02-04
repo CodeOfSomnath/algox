@@ -21,3 +21,41 @@ func TestAddListFunction(t *testing.T)  {
 		}
 	}
 }
+
+func ArrayCheker[T comparable](a []T, b[]T) bool  {
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
+			return false;
+		}
+	}
+	return true;
+}
+
+func TestAddFunctions(t *testing.T)  {
+	arr := list.NewArrayList[int]()
+	a := []int{10, 34, 23}
+
+	arr.AddAll(a...)
+	
+	//checking if all elements are add
+	if !ArrayCheker(arr.ToArray(), a) {
+		t.Errorf("%v != %v\n", arr.ToArray(), a)
+	}
+	// Removing all added elements
+	arr.RemoveAll(a...)
+
+	if len(arr.ToArray()) != 0 {
+		t.Errorf("ArrayList.RemoveAll() is not working, array = %v\n", arr.ToArray())
+	}
+
+}
+
+
+func TestIndexFunctions(t *testing.T)  {
+	arr := list.NewArrayList[int]()
+	arr.AddAll(10, 20, 30);
+	if arr.IndexOf(20) != 1 {
+		t.Errorf("index = %v\n, is not 1", arr.IndexOf(20));
+	}
+}
+
