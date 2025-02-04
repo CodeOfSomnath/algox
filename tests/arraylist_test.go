@@ -2,41 +2,41 @@ package tests
 
 // import "testing"
 import (
-	"testing"
 	"github.com/CodeOfSomnath/algox/list"
+	"testing"
 )
 
 // testing the list add function working or not
-func TestAddListFunction(t *testing.T)  {
+func TestAddListFunction(t *testing.T) {
 	arr := list.NewArrayList[int]()
 	arr.Add(10)
 	arr.Add(20)
 
-	a := []int{10, 20};
-	b := arr.ToArray();
+	a := []int{10, 20}
+	b := arr.ToArray()
 	for i := 0; i < arr.Size(); i++ {
-		t.Logf("a[%d] = %d, b[%d]= %d", i, a[i], i, b[i]);
+		t.Logf("a[%d] = %d, b[%d]= %d", i, a[i], i, b[i])
 		if a[i] != b[i] {
-			t.Errorf("%d != %d", a[i], b[i]);
+			t.Errorf("%d != %d", a[i], b[i])
 		}
 	}
 }
 
-func ArrayCheker[T comparable](a []T, b[]T) bool  {
+func ArrayCheker[T comparable](a []T, b []T) bool {
 	for i := 0; i < len(a); i++ {
 		if a[i] != b[i] {
-			return false;
+			return false
 		}
 	}
-	return true;
+	return true
 }
 
-func TestAddFunctions(t *testing.T)  {
+func TestAddFunctions(t *testing.T) {
 	arr := list.NewArrayList[int]()
 	a := []int{10, 34, 23}
 
 	arr.AddAll(a...)
-	
+
 	//checking if all elements are add
 	if !ArrayCheker(arr.ToArray(), a) {
 		t.Errorf("%v != %v\n", arr.ToArray(), a)
@@ -50,12 +50,20 @@ func TestAddFunctions(t *testing.T)  {
 
 }
 
-
-func TestIndexFunctions(t *testing.T)  {
+func TestIndexFunctions(t *testing.T) {
 	arr := list.NewArrayList[int]()
-	arr.AddAll(10, 20, 30);
+	arr.AddAll(10, 20, 30)
 	if arr.IndexOf(20) != 1 {
-		t.Errorf("index = %v\n, is not 1", arr.IndexOf(20));
+		t.Errorf("index = %v\n, is not 1", arr.IndexOf(20))
 	}
 }
 
+
+func TestSort(t *testing.T)  {
+	arr := list.NewArrayList[int]()
+	arr.AddAll(7, 4, 10)
+	arr.Sort()
+	if !ArrayCheker(arr.ToArray(), []int{4, 7, 10}) {
+		t.Errorf("ArrayList.Sort() not working, %v\n", arr.ToArray())
+	}
+}
