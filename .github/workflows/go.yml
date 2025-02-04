@@ -1,34 +1,25 @@
-name: Go Build
+name: Go
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "master" ]
 
 jobs:
+
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-20.04, macos-latest, windows-latest]  # Defining the OS matrix
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '1.23.5'  # Set Go version 1.23.5
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
 
-      - name: Install dependencies
-        run: go mod tidy
+    - name: Build
+      run: go build -v ./...
 
-      - name: Build
-        run: go build -v ./...  # Adjust build command as needed
-
-      - name: Run tests
-        run: go test ./...  # Optional: run tests
+    - name: Test
+      run: go test -v ./...
