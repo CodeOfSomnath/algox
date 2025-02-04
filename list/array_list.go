@@ -37,8 +37,14 @@ func (arr * ArrayList[T]) AddAt(value T, index int)  {
 
 // Appends all of the elements in the specified collection to the end of this list,
 // in the order that they are returned by the specified collection's Iterator.
-func (arr *  ArrayList[T]) AddAll(value ...T) bool {
-	return false
+func (arr *  ArrayList[T]) AddAll(values ...T) bool {
+	isSuccessFull := true
+
+	for i := 0; i < len(values); i++ {
+		arr.Add(values[i])
+	}
+
+	return isSuccessFull;
 }
 
 // Inserts all of the elements in the specified collection into this list,
