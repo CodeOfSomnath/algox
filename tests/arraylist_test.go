@@ -6,8 +6,8 @@ import (
 	"github.com/CodeOfSomnath/algox/list"
 )
 
-
-func TestIntList(t *testing.T)  {
+// testing the list add function working or not
+func TestAddListFunction(t *testing.T)  {
 	arr := list.NewArrayList[int]()
 	arr.Add(10)
 	arr.Add(20)

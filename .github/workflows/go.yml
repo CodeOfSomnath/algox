@@ -1,28 +1,34 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
-name: Go
+name: Go Build
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
-
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, macos-latest, windows-latest]  # Defining the OS matrix
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.23'
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.5'  # Set Go version 1.23.5
 
-    - name: Build
-      run: go build -v ./...
+      - name: Install dependencies
+        run: go mod tidy
 
-    - name: Test
-      run: go test -v ./...
+      - name: Build
+        run: go build -v ./...  # Adjust build command as needed
+
+      - name: Run tests
+        run: go test ./...  # Optional: run tests
