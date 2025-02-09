@@ -191,7 +191,17 @@ func (arr ArrayList[T]) ToArray() []T {
 	return arr.array
 }
 
+// This function sort the list
 func (arr *ArrayList[T]) Sort() {
 	// the sort function
 	slices.Sort(arr.array)
+}
+
+func (arr ArrayList[T]) GetFirst() T {
+	return arr.Get(0)
+}
+
+
+func (arr ArrayList[T]) GetLast() T {
+	return arr.Get(arr.Size()-1)
 }
