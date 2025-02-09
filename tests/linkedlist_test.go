@@ -25,3 +25,20 @@ func TestLinkedListBasic(t *testing.T)  {
 		t.Logf("arr[%v] = %v, b[%v] = %v\n", i, arr[i], i, b[i])
 	}
 }
+
+
+func TestLinkedListPop(t *testing.T)  {
+	linkedList := list.NewLinkedList[int]()
+	linkedList.AddAll(2,3,4,5)
+	ele := linkedList.Pop()
+	if ele != 5 {
+		t.Errorf("LinkedList.Pop() is not working\n")
+	}
+	t.Logf("ele = %v\n", ele)
+
+	ele = linkedList.Pop()
+	if ele != 4 {
+		t.Errorf("LinkedList.Pop() is not working\n")
+	}
+	t.Logf("ele = %v\n", ele)
+}
