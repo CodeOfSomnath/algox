@@ -15,6 +15,20 @@ func newNode[T cmp.Ordered]() *node[T] {
 	return n
 }
 
+// linkedlist implements a singly linked list in Go.
+//
+// A linked list is a dynamic data structure consisting of nodes, where each node 
+// contains a value and a reference to the next node in the sequence. Unlike arrays, 
+// linked lists allow efficient insertions and deletions without needing to resize or shift elements.
+//
+// When to Use:
+// When you need dynamic memory allocation without a fixed size (unlike slices).
+// When frequent insertions and deletions are required (e.g., queues, stacks).
+// When memory fragmentation is a concern, as linked lists can allocate nodes anywhere in memory.
+//
+// Limitations:
+// Higher memory usage due to additional pointer storage.
+// Slower random access (O(n) lookup time) compared to arrays (O(1) lookup).
 type LinkedList[T cmp.Ordered] struct {
 	head *node[T]
 	tail *node[T]

@@ -6,9 +6,24 @@ import (
 	"slices"
 )
 
+// Package mypackage provides utilities for working with dynamic lists.
+//
+// Use slices in Go when you need a dynamic, resizable array-like structure.
+// Unlike arrays, slices can grow and shrink in size as needed.
+//
+// Slices should be used when:
+// - You need a flexible collection that can change in size.
+// - You want efficient iteration and indexing.
+// - You need to pass subsets of data without copying underlying elements.
+//
+// Example:
+//  numbers := []int{1, 2, 3}  // Create a slice
+//  numbers = append(numbers, 4, 5)  // Dynamically grow the slice
+//  fmt.Println(numbers)  // Output: [1 2 3 4 5]
 type ArrayList[T cmp.Ordered] struct {
 	array []T
 }
+
 
 // Creating a new arraylist
 func NewArrayList[T cmp.Ordered]() ArrayList[T] {
@@ -208,4 +223,5 @@ func (arr ArrayList[T]) String() string {
 	str = fmt.Sprintf("%v ]", str)
 	return str
 }
+
 
