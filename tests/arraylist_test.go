@@ -66,3 +66,10 @@ func TestSort(t *testing.T) {
 		t.Errorf("ArrayList.Sort() not working, %v\n", arr.ToArray())
 	}
 }
+
+
+func TestArrayListStringMethod(t *testing.T)  {
+	arr := list.NewArrayList[int]()
+	arr.AddAll(2,3,4,5)
+	t.Logf("%v\n", arr)
+}

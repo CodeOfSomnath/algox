@@ -2,6 +2,7 @@ package list
 
 import (
 	"cmp"
+	"fmt"
 	"slices"
 )
 
@@ -197,11 +198,14 @@ func (arr *ArrayList[T]) Sort() {
 	slices.Sort(arr.array)
 }
 
-func (arr ArrayList[T]) GetFirst() T {
-	return arr.Get(0)
+
+// String representation for arraylist
+func (arr ArrayList[T]) String() string {
+	str := "["
+	for i := 0; i < arr.Size(); i++ {
+		str = fmt.Sprintf("%v %v", str, arr.Get(i))
+	}
+	str = fmt.Sprintf("%v ]", str)
+	return str
 }
 
-
-func (arr ArrayList[T]) GetLast() T {
-	return arr.Get(arr.Size()-1)
-}

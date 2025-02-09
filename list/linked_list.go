@@ -2,6 +2,7 @@ package list
 
 import (
 	"cmp"
+	"fmt"
 )
 
 type node[T cmp.Ordered] struct {
@@ -110,3 +111,15 @@ func (ll LinkedList[T]) Size() int {
 	return ll.size
 }
 
+
+// String representation for linkedlist
+func (ll LinkedList[T]) String() string {
+	str := "["
+	n := ll.head
+	for i := 0; i < ll.size; i++ {
+		str = fmt.Sprintf("%v %v", str, n.value)
+		n = n.next
+	}
+	str = fmt.Sprintf("%v ]", str)
+	return str
+}

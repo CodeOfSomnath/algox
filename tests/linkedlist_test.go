@@ -42,3 +42,9 @@ func TestLinkedListPop(t *testing.T)  {
 	}
 	t.Logf("ele = %v\n", ele)
 }
+
+func TestLinkedListString(t *testing.T)  {
+	l := list.NewLinkedList[int]()
+	l.AddAll(2,4,5,3)
+	t.Logf("%v\n", l)
+}
