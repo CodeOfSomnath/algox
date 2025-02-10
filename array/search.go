@@ -2,6 +2,7 @@ package array
 
 import (
 	"cmp"
+	"fmt"
 )
 
 // Search for the element in the arraylist and gives the first index of the element
@@ -49,7 +50,7 @@ func BinarySearch[T cmp.Ordered](elements []T, element T) int {
 	high := len(elements)
 	mid := int((high + low) / 2)
 
-	for mid >= low && mid <= high {
+	for low != high {
 		if elements[mid] < element {
 			low = mid
 		} else if elements[mid] > element {
@@ -59,7 +60,8 @@ func BinarySearch[T cmp.Ordered](elements []T, element T) int {
 		}
 
 		mid = int((high + low) / 2)
-
+		// for debug only
+		// fmt.Printf("low=%v, mid=%v, high=%v\n", low, mid, high)
 	}
 
 	return -1

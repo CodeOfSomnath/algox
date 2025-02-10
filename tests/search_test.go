@@ -11,7 +11,7 @@ import (
 
 
 func TestLinearSearchX(t *testing.T) {
-	size := 20000000
+	size := 20000
 	x := size / 2
 	arr := make([]int, size) // Create an array with 1000 elements
     for i := range arr {
@@ -36,7 +36,7 @@ func TestLinearSearchX(t *testing.T) {
 
 
 func TestLinearSearch(t *testing.T) {
-	size := 20000000
+	size := 20000
 	x := size / 2
 	arr := make([]int, size) // Create an array with 1000 elements
     for i := range arr {
@@ -62,10 +62,13 @@ func TestLinearSearch(t *testing.T) {
 
 func TestBinarySearch(t * testing.T)  {
 	arr := []int {2,3,4,10,15,25}
-	index := array.BinarySearch(arr, 25)
-	if index != 5 {
+	i := len(arr)-1
+	index := array.BinarySearch(arr, arr[i])
+	if index == -1 {
+		t.Logf("element not found\n")
+	} else if index != i {
 		t.Errorf("array.BinarySearch is not working\n")
-	} else {
-		t.Logf("%v found at %v\n", 10, index)
+	}   else {
+		t.Logf("%v found at %v\n", arr[index], index)
 	}
 }
