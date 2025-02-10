@@ -2,7 +2,6 @@ package array
 
 import (
 	"cmp"
-	"fmt"
 )
 
 // Search for the element in the arraylist and gives the first index of the element
