@@ -58,3 +58,14 @@ func TestLinearSearch(t *testing.T) {
 	}
 	
 }
+
+
+func TestBinarySearch(t * testing.T)  {
+	arr := []int {2,3,4,10,15,25}
+	index := array.BinarySearch(arr, 25)
+	if index != 5 {
+		t.Errorf("array.BinarySearch is not working\n")
+	} else {
+		t.Logf("%v found at %v\n", 10, index)
+	}
+}
