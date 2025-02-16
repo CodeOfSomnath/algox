@@ -4,10 +4,10 @@ import (
 	"cmp"
 )
 
-// Search for the element in the arraylist and gives the first index of the element
+// Search for the element in the array and gives the first index of the element
 // otherwise -1
 func LinearSearch[T comparable](elements []T, element T) int {
-	
+
 	for i := 0; i < len(elements); i++ {
 		if elements[i] == element {
 			return i
@@ -17,8 +17,62 @@ func LinearSearch[T comparable](elements []T, element T) int {
 	return -1
 }
 
-// This is a exprimental searching algorithm.
-func LinearSearchX[T comparable](elements []T, element T) int {
+// This is a reverse linear search algorithm
+// Search for the element in the array and gives the first index of the element
+// otherwise -1
+func ReverseLinearSearch[T comparable](elements []T, element T) int {
+	for i := len(elements) - 1; i >= 0; i-- {
+		if elements[i] == element {
+			return i
+		}
+	}
+	return -1
+}
+
+// This is an experimental function
+func ThreadSearch[T comparable](elements []T, element T) int {
+
+	// Create a channel to receive the computed result.
+	res := make(chan int)
+
+
+	// Launch an anonymous function as a goroutine.
+	go func(arr []T, ele T, ch chan int) {
+		// Compute the square of n.
+		result := LinearSearch(arr, ele)
+		// Send the result back on the channel.
+		ch <- result
+	}(elements, element, res)
+
+
+	go func(arr []T, ele T, ch chan int) {
+		// Compute the square of n.
+		result := ReverseLinearSearch(arr, ele)
+		// Send the result back on the channel.
+		ch <- result
+	}(elements, element, res)
+
+	// Wait for and receive the result from the channel.
+	result, ok1 := <-res
+
+	if result != -1 && ok1 {
+		return result
+	}
+
+
+	result, ok2 := <-res
+
+	if result != -1 && ok2 {
+		return result
+	}
+
+	return -1
+}
+
+// This is a simple linear search which search from both side of an array
+// Search for the element in the array and gives the first index of the element
+// otherwise -1
+func BiDirectionalSearch[T comparable](elements []T, element T) int {
 
 	right := 0
 	left := len(elements) - 1
@@ -40,7 +94,7 @@ func LinearSearchX[T comparable](elements []T, element T) int {
 	return -1
 }
 
-// Search for the element in the arraylist and gives the first index of the element
+// Search for the element in the array and gives the first index of the element
 // otherwise -1 .
 //
 // This is only aplicable if the array is sorted
@@ -59,8 +113,6 @@ func BinarySearch[T cmp.Ordered](elements []T, element T) int {
 		}
 
 		mid = int((high + low) / 2)
-		// for debug only
-		// fmt.Printf("low=%v, mid=%v, high=%v\n", low, mid, high)
 	}
 
 	return -1
