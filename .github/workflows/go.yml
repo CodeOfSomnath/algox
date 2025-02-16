@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  windows-build-v1.23:
+  windows-build-v1-23:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  mac-build-v1.23:
+  mac-build-v1-23:
     runs-on: "macos-13"
     env:
       ARCH: "x86_64"
@@ -42,7 +42,7 @@ jobs:
     - name: Test
       run: go test -v ./... 
 
-  linux-build-v1.23:
+  linux-build-v1-23:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -59,7 +59,7 @@ jobs:
       run: go test -v ./...
   
 
-  windows-build-v1.19:
+  windows-build-v1-19:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
@@ -75,7 +75,7 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  mac-build-v1.19:
+  mac-build-v1-19:
     runs-on: "macos-13"
     env:
       ARCH: "x86_64"
@@ -93,7 +93,7 @@ jobs:
     - name: Test
       run: go test -v ./... 
 
-  linux-build-v1.19:
+  linux-build-v1-19:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
