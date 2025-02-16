@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  windows-build:
+  windows-build-v1.23:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  mac-build:
+  mac-build-v1.23:
     runs-on: "macos-13"
     env:
       ARCH: "x86_64"
@@ -42,9 +42,7 @@ jobs:
     - name: Test
       run: go test -v ./... 
 
-  
-
-  linux-build:
+  linux-build-v1.23:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -53,6 +51,57 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.23'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+  
+
+  windows-build-v1.19:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.19'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+
+  mac-build-v1.19:
+    runs-on: "macos-13"
+    env:
+      ARCH: "x86_64"
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.19'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./... 
+
+  linux-build-v1.19:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.19'
 
     - name: Build
       run: go build -v ./...

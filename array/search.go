@@ -7,7 +7,7 @@ import (
 // Search for the element in the arraylist and gives the first index of the element
 // otherwise -1
 func LinearSearch[T comparable](elements []T, element T) int {
-
+	
 	for i := 0; i < len(elements); i++ {
 		if elements[i] == element {
 			return i
